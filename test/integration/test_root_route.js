@@ -1,7 +1,7 @@
-const mocha = require('mocha');
-const supertest = require('supertest');
-const assert = require('assert');
-const app = require('../../server').app;
+import mocha from 'mocha';
+import supertest from 'supertest';
+import assert from 'node:assert';
+import app from '../../server.js';
 
 
 mocha.describe('Integration::Root route', () => {

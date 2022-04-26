@@ -1,7 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-require('dotenv').config();
+import express from 'express'
+import cors from 'cors';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+dotenv.config();
 
 //Instansiate App
 const app = express();
@@ -52,7 +53,5 @@ app.listen(PORT, () => {
 });
 
 //Expose to Tests
-module.exports = {
-    app,
-};
+export default app;
 
