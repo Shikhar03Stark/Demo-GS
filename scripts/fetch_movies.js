@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import fs from 'node:fs';
 import {program} from 'commander';
 import dotenv from 'dotenv';
 dotenv.config({
@@ -123,6 +124,7 @@ else{
 }
 
 //write to stdout
-process.stdout.write(JSON.stringify(result));
+fs.writeFileSync(process.stdout.fd, JSON.stringify(result));
+fs.close(process.stdout.fd);
 
 

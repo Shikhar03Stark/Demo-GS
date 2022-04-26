@@ -4,7 +4,7 @@
 
 Datasource: https://developers.themoviedb.org/3/getting-started/introduction
 
- - [ ] Collect movie data from the above api and store it in your db.
+ - [x] Collect movie data from the above api and store it in your db.
  - [ ] Allows user to register into your application.
  - [ ] Allows user to login using username and password, and return access token as response.
  - [ ] Using the access token user can retrieve movie list.
