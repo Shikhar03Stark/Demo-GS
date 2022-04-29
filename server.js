@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import connect from './config/index.js';
+import routes from './routes/index.js';
 dotenv.config();
 
 //Instansiate App
@@ -15,9 +17,8 @@ if(process.env.NODE_ENV === 'development'){
     app.use(morgan('short'));
 }
 
-
 //routes
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
     res.status(200).json({
         ok: true,
         data: {
@@ -25,6 +26,8 @@ app.get('/', (req, res) => {
         },
     })
 });
+
+app.use('/', routes);
 
 //Error handler
 app.use((err, req, res, next) => {
@@ -46,6 +49,8 @@ app.use((req, res, next) => {
         error: 'Route does not exist',
     });
 });
+
+connect();
 
 app.listen(PORT, () => {
     console.log(`Server listening @${process.env.PORT}`);
