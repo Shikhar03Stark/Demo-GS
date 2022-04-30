@@ -50,6 +50,7 @@ movie_schema.method('rerate', function(new_rating, old_rating){
     if(new_rating > 0 && new_rating <= 5 && old_rating > 0 && old_rating <= 5){
         if(this.rate_sum + new_rating - old_rating >= 0){
             this.rate_sum += new_rating - old_rating;
+            this.save();
         }
         else{
             throw Error('Inconsistent rating update. Try again later');
@@ -64,6 +65,7 @@ movie_schema.method('rate', function(rating){
     if(rating > 0 && rating <= 5){
         this.rate_sum += rating;
         this.rate_count += 1;
+        this.save();
     }
     else{
         throw Error('Rating can only be in between 1 to 5');
@@ -75,6 +77,7 @@ movie_schema.method('unrate', function(rating){
         if(rating <= this.rate_sum && rate_count > 0){
             this.rate_sum -= rating;
             this.rate_count -= 1;
+            this.save();
         }
         else{
             throw Error('No ratings exists for this movie');
@@ -86,7 +89,7 @@ movie_schema.method('unrate', function(rating){
 });
 
 movie_schema.virtual('average_rating').get(function(){
-    return this.rate_sum/this.rate_count;
+    return (this.rate_count>0?this.rate_sum/this.rate_count:'NA');
 });
 
 const Movie = mongoose.model('Movie', movie_schema);
