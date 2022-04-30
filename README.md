@@ -17,4 +17,4 @@ Scripts: (to be updated soon)
 
 ## Postman Docs
 
-Link: (to be updated soon)
+Link: https://documenter.getpostman.com/view/12996761/UyrGBEHZ

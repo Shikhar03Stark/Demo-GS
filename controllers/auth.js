@@ -7,7 +7,7 @@ const auth = {
             let username = req.body.username;
             let password = req.body.password;
             username = String(username).trim();
-            password = String(username).trim();
+            password = String(password).trim();
     
             const _user = await User.findOne({username: username});
     
@@ -68,7 +68,7 @@ const auth = {
                 return;
             }
 
-            const password_matched = await Util.compare_password(password, user.password);
+            const password_matched = await Util.compare_password(password, String(user.password));
             if(!password_matched){
                 next({
                     status: 401,

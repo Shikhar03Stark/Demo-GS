@@ -17,6 +17,7 @@ const middlewares = {
     },
 
     compare_password: async (plain_pass, hashed_pass) => {
+        console.log({plain_pass, hashed_pass});
         const same = await bcrypt.compare(plain_pass, hashed_pass);
         return same;
     },
