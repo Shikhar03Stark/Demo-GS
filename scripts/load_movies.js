@@ -8,6 +8,7 @@ dotenv.config({
 });
 
 const credentials = {
+    url: process.env.DB_URL,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME || 'default',
@@ -20,9 +21,11 @@ program.parse();
 
 const options = program.opts();
 
-let database_url;
+let database_url = credentials.url;
 if(options.url === 'null'){
-    database_url = `mongodb+srv://${credentials.username}:${credentials.password}@demo-cluster.fyw1e.mongodb.net/${credentials.database}?retryWrites=true&w=majority`;
+    if(!credentials.url){
+        database_url = `mongodb+srv://${credentials.username}:${credentials.password}@demo-cluster.fyw1e.mongodb.net/${credentials.database}?retryWrites=true&w=majority`;
+    }
 }
 else{
     database_url = options.url;
